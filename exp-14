@@ -1,0 +1,22 @@
+# Apply Bayes’ theorem to a disease test
+
+import matplotlib.pyplot as plt
+
+prior = 0.02
+sensitivity = 0.95
+false_positive = 0.05
+
+p_positive = (sensitivity * prior
+              + false_positive * (1 - prior))
+
+posterior = sensitivity * prior / p_positive
+
+print("Prior disease probability:", prior)
+print("P(positive test):", round(p_positive, 4))
+print("P(disease | positive):", round(posterior, 4))
+print("Posterior percentage:", round(posterior * 100, 2), "%")
+
+plt.bar(["Prior", "After Positive Test"], [prior, posterior])
+plt.ylabel("Probability")
+plt.title("Bayes' Theorem: Disease Test")
+plt.show()
