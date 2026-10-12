@@ -1,0 +1,20 @@
+# Calculate dot product and prediction with bias
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+X = np.array([4, 6, 8])
+W = np.array([0.5, 0.3, 0.2])
+bias = 2
+
+dot = np.dot(X, W)
+prediction = dot + bias
+
+print("Dot product:", dot)
+print("Predicted output:", prediction)
+
+plt.bar(["Dot Product", "Bias", "Prediction"],
+        [dot, bias, prediction])
+plt.ylabel("Value")
+plt.title("Weighted Prediction")
+plt.show()
