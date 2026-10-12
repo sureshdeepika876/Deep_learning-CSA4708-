@@ -1,0 +1,19 @@
+# Calculate cross-entropy for classification
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+Y = np.array([1, 0, 0])
+P = np.array([0.7, 0.2, 0.1])
+
+loss = -np.sum(Y * np.log(np.clip(P, 1e-12, 1)))
+print("Cross-entropy loss (nats):", round(loss, 4))
+
+x = np.arange(3)
+plt.bar(x - 0.18, Y, 0.36, label="Actual")
+plt.bar(x + 0.18, P, 0.36, label="Predicted")
+plt.xticks(x, ["Cat", "Dog", "Bird"])
+plt.ylabel("Probability")
+plt.title("Actual vs Predicted")
+plt.legend()
+plt.show()
