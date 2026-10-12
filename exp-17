@@ -1,0 +1,15 @@
+# Calculate entropy of weather probabilities
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import entropy
+
+P = np.array([0.6, 0.3, 0.1])
+H = entropy(P, base=2)
+
+print("Entropy:", round(H, 4), "bits")
+
+plt.bar(["Sunny", "Rainy", "Cloudy"], P)
+plt.ylabel("Probability")
+plt.title("Weather Probability Distribution")
+plt.show()
