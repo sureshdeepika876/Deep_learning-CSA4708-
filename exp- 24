@@ -1,0 +1,51 @@
+# Compare temperature prediction models
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+np.random.seed(12)
+
+X = np.linspace(0, 24, 60).reshape(-1, 1)
+y = 20 + 5 * np.sin(2 * np.pi * X.ravel() / 24)
+y += np.random.normal(0, 1, 60)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+X_plot = np.linspace(0, 24, 300).reshape(-1, 1)
+
+plt.scatter(X, y, s=15, label="Temperature Data")
+
+for degree in [1, 3, 12]:
+    model = make_pipeline(
+        PolynomialFeatures(degree),
+        LinearRegression()
+    )
+    model.fit(X_train, y_train)
+
+    train_mse = mean_squared_error(
+        y_train, model.predict(X_train)
+    )
+    test_mse = mean_squared_error(
+        y_test, model.predict(X_test)
+    )
+
+    print(
+        f"Degree {degree}: Train MSE = {train_mse:.3f}, "
+        f"Test MSE = {test_mse:.3f}"
+    )
+
+    plt.plot(X_plot, model.predict(X_plot),
+             label=f"Degree {degree}")
+
+plt.xlabel("Time (Hours)")
+plt.ylabel("Temperature")
+plt.title("Temperature Model Comparison")
+plt.legend()
+plt.show()
