@@ -1,0 +1,18 @@
+# Calculate covariance between study hours and marks
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+hours = np.array([2, 4, 6, 8, 10])
+marks = np.array([35, 45, 60, 75, 85])
+
+covariance = np.cov(hours, marks)[0, 1]
+
+print("Sample covariance:", round(covariance, 2))
+
+plt.scatter(hours, marks)
+plt.xlabel("Study Hours")
+plt.ylabel("Exam Marks")
+plt.title("Study Hours vs Exam Marks")
+plt.grid(True)
+plt.show()
