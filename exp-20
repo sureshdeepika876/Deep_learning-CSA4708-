@@ -1,0 +1,23 @@
+# Calculate cross-entropy and KL divergence for four classes
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import entropy
+
+Y = np.array([0, 1, 0, 0], dtype=float)
+P = np.array([0.1, 0.6, 0.2, 0.1], dtype=float)
+
+cross_entropy = -np.sum(Y * np.log(np.clip(P, 1e-12, 1)))
+kl = entropy(Y, P)
+
+print("Cross-entropy (nats):", round(cross_entropy, 4))
+print("KL divergence (nats):", round(kl, 4))
+
+x = np.arange(4)
+plt.bar(x - 0.18, Y, 0.36, label="Actual")
+plt.bar(x + 0.18, P, 0.36, label="Predicted")
+plt.xticks(x, ["Class 1", "Class 2", "Class 3", "Class 4"])
+plt.ylabel("Probability")
+plt.title("Actual vs Predicted Distribution")
+plt.legend()
+plt.show()
