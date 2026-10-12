@@ -1,19 +1,18 @@
-# Calculate the covariance matrix of temperature and humidity
+# Calculate covariance between study hours and marks
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-temperature = np.array([22, 25, 28, 30, 32])
-humidity = np.array([80, 75, 68, 60, 55])
+hours = np.array([2, 4, 6, 8, 10])
+marks = np.array([35, 45, 60, 75, 85])
 
-data = np.column_stack((temperature, humidity))
-cov_matrix = np.cov(data, rowvar=False)
+covariance = np.cov(hours, marks)[0, 1]
 
-print("Covariance matrix:\n", np.round(cov_matrix, 2))
+print("Sample covariance:", round(covariance, 2))
 
-plt.scatter(temperature, humidity)
-plt.xlabel("Temperature")
-plt.ylabel("Humidity")
-plt.title("Temperature vs Humidity")
+plt.scatter(hours, marks)
+plt.xlabel("Study Hours")
+plt.ylabel("Exam Marks")
+plt.title("Study Hours vs Exam Marks")
 plt.grid(True)
 plt.show()
