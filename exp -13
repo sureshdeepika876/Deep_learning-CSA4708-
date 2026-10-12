@@ -1,0 +1,16 @@
+# Calculate Poisson probability
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import poisson
+
+lam = 4
+x = np.arange(13)
+
+print("P(X = 6):", round(poisson.pmf(6, lam), 4))
+
+plt.bar(x, poisson.pmf(x, lam))
+plt.xlabel("Customer Arrivals in 10 Minutes")
+plt.ylabel("Probability")
+plt.title("Poisson Distribution")
+plt.show()
