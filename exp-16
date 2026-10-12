@@ -1,0 +1,22 @@
+# Apply Bayes’ theorem to spam detection
+
+import matplotlib.pyplot as plt
+
+prior_spam = 0.30
+prize_given_spam = 0.70
+prize_given_not_spam = 0.10
+
+p_prize = (prize_given_spam * prior_spam
+           + prize_given_not_spam * (1 - prior_spam))
+
+posterior = prize_given_spam * prior_spam / p_prize
+
+print("P(prize):", round(p_prize, 4))
+print("P(spam | prize):", round(posterior, 4))
+print("Posterior percentage:", round(posterior * 100, 2), "%")
+
+plt.bar(["Prior Spam", "Spam Given Prize"],
+        [prior_spam, posterior])
+plt.ylabel("Probability")
+plt.title("Bayes' Theorem: Spam Detection")
+plt.show()
