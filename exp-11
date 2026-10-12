@@ -1,0 +1,18 @@
+# Calculate binomial probability
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+n = 20
+p = 0.1
+x = np.arange(n + 1)
+
+probability = binom.pmf(3, n, p)
+print("P(X = 3):", round(probability, 4))
+
+plt.bar(x, binom.pmf(x, n, p))
+plt.xlabel("Number of Defective Components")
+plt.ylabel("Probability")
+plt.title("Binomial Distribution")
+plt.show()
