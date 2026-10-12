@@ -1,0 +1,20 @@
+# Calculate KL divergence between two distributions
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import entropy
+
+P = np.array([0.5, 0.3, 0.2])
+Q = np.array([0.4, 0.4, 0.2])
+
+kl = entropy(P, Q)
+print("KL divergence (nats):", round(kl, 4))
+
+x = np.arange(3)
+plt.bar(x - 0.18, P, 0.36, label="P")
+plt.bar(x + 0.18, Q, 0.36, label="Q")
+plt.xticks(x, ["Word 1", "Word 2", "Word 3"])
+plt.ylabel("Probability")
+plt.title("Distribution Comparison")
+plt.legend()
+plt.show()
